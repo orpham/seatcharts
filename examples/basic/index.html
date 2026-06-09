@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>seatcharts — Basic Example</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 2rem;
+        }
+
+        .demo {
+            max-width: 640px;
+        }
+
+        /* layout */
+        .seatCharts-container {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 4px;
+            user-select: none;
+        }
+
+        .seatCharts-row {
+            align-items: center;
+            display: flex;
+            gap: 4px;
+        }
+
+        /* cells */
+        .seatCharts-cell {
+            align-items: center;
+            border-radius: 4px;
+            display: flex;
+            font-size: 0.7rem;
+            font-weight: 600;
+            height: 32px;
+            justify-content: center;
+            width: 32px;
+        }
+
+        /* seats */
+        .seatCharts-seat {
+            cursor: pointer;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .seatCharts-seat.available {
+            color: #fff;
+        }
+
+        .seatCharts-seat.available.a {
+            background: #dc2626;
+        }
+
+        .seatCharts-seat.available.b {
+            background: #f59e0b;
+        }
+
+        .seatCharts-seat.available.c {
+            background: #198754;
+        }
+
+        .seatCharts-seat.selected {
+            background: #0d6efd;
+            color: #fff;
+        }
+
+        .seatCharts-seat.unavailable {
+            background: #dee2e6;
+            color: #adb5bd;
+            cursor: default;
+        }
+
+        .seatCharts-seat.focused {
+            background: #0a58ca;
+            color: #fff;
+        }
+
+        /* header / row labels */
+        .seatCharts-header .seatCharts-cell,
+        .seatCharts-space {
+            background: transparent;
+            color: #6c757d;
+            font-size: 0.65rem;
+        }
+
+        /* legend */
+        .seatCharts-legend {
+            margin-top: 1rem;
+        }
+
+        .seatCharts-legendList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .seatCharts-legendItem {
+            align-items: center;
+            display: flex;
+            font-size: 0.8rem;
+            gap: 0.4rem;
+        }
+
+        .seatCharts-legendDescription {
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+<div class="demo">
+    <h4 class="mb-4">seatcharts — Basic Example</h4>
+
+    <div id="seat-map"></div>
+    <div id="legend"></div>
+    <div id="info" class="mt-4 text-muted small">Click a seat to select it</div>
+</div>
+
+<script type="module">
+    import {SeatCharts} from '../../dist/seatcharts.js';
+
+    const sc = new SeatCharts(document.getElementById('seat-map'), {
+        map: [
+            'aaaaaaaaaaaa',
+            'aaaaaaaaaaaa',
+            'bbbbbbbbbb__',
+            'bbbbbbbbbb__',
+            'bbbbbbbbbbbb',
+            'cccccccccccc'
+        ],
+        naming: {
+            rows: ['A', 'B', 'C', 'D', 'E', 'F']
+        },
+        seats: {
+            a: {price: 99.99, classes: ['a']},
+            b: {price: 49.99, classes: ['b']},
+            c: {price: 19.99, classes: ['c']}
+        },
+        legend: {
+            node: document.getElementById('legend'),
+            items: [
+                ['a', 'available', 'Front row (€ 99.99)'],
+                ['b', 'available', 'Middle (€ 49.99)'],
+                ['c', 'available', 'Back (€ 19.99)']
+            ]
+        },
+        click() {
+            if (this.status() === 'available') return 'selected';
+            if (this.status() === 'selected') return 'available';
+            return this.style();
+        },
+        onChange() {
+            updateInfo();
+        }
+    });
+
+    // pre-book a few seats
+    sc.status(['A_3', 'A_4', 'A_5', 'C_7', 'C_8', 'F_1', 'F_2'], 'unavailable');
+
+    function updateInfo() {
+        const selected = sc.find('selected');
+        const info = document.getElementById('info');
+        if (selected.length === 0) {
+            info.textContent = 'Click a seat to select it';
+            return;
+        }
+        let total = 0;
+        selected.each(function () {
+            total += this.data().price ?? 0;
+        });
+        info.textContent = `${selected.length} seat(s) selected — Total: € ${total.toFixed(2)}`;
+    }
+</script>
+</body>
+</html>

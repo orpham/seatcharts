@@ -1,0 +1,10 @@
+seatcharts
+Copyright (c) 2026 orpham
+
+This project is a TypeScript rewrite of jQuery-Seat-Charts (https://github.com/mateuszmarkowski/jQuery-Seat-Charts),
+originally created by:
+
+  Copyright (c) 2013-2026 Mateusz Markowski
+
+The map parser, seat selector API, and CSS class naming are derived from the original work and are used under the terms
+of the MIT License.

@@ -1,0 +1,51 @@
+{
+    "name": "@orpham/seatcharts",
+    "author": "orpham",
+    "version": "1.0.0",
+    "description": "Interactive seat charts.",
+    "homepage": "https://github.com/orpham/seatcharts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/orpham/seatcharts.git"
+    },
+    "keywords": [
+        "interactive",
+        "seat",
+        "charts"
+    ],
+    "bugs": {
+        "url": "https://github.com/orpham/seatcharts/issues"
+    },
+    "license": "MIT",
+    "type": "module",
+    "main": "./dist/seatcharts.umd.cjs",
+    "module": "./dist/seatcharts.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/seatcharts.js",
+            "require": "./dist/seatcharts.umd.cjs",
+            "types": "./dist/index.d.ts"
+        },
+        "./locales/*": "./locales/*"
+    },
+    "files": [
+        "dist",
+        "locales"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "dev": "vite build --watch",
+        "serve": "npx serve ."
+    },
+    "devDependencies": {
+        "@types/node": "^25.9.1",
+        "jsdom": "^29.1.1",
+        "typescript": "^5.4.5",
+        "vite": "8.0.5",
+        "vite-plugin-dts": "^5.0.1",
+        "vitest": "^4.1.7"
+    }
+}
