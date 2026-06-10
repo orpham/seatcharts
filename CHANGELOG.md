@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. The format is based
 on [Keep a Changelog](https://keepachangelog.com).
 
+## [1.0.2] - 2026-06-10
+
+Initial automated npm release via GitHub Actions Trusted Publisher.
+
 ## [1.0.1] - 2026-06-10
 
 Initial manual npm release.
