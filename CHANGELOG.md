@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. The format is based
 on [Keep a Changelog](https://keepachangelog.com).
 
+## [1.0.1] - 2026-06-10
+
+Initial manual npm release.
+
 ## [1.0.0] - 2026-06-10
 
 Complete rewrite of [jQuery-Seat-Charts](https://github.com/mateuszmarkowski/jQuery-Seat-Charts) by Mateusz Markowski.

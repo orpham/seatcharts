@@ -1,7 +1,7 @@
 {
     "name": "@orpham/seatcharts",
     "author": "orpham",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Interactive seat charts.",
     "homepage": "https://github.com/orpham/seatcharts",
     "repository": {
