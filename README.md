@@ -1,6 +1,7 @@
 # seatcharts
 
 [![CI](https://github.com/orpham/seatcharts/actions/workflows/ci.yml/badge.svg)](https://github.com/orpham/seatcharts/actions/workflows/ci.yml)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@orpham/seatcharts/badge)](https://www.jsdelivr.com/package/npm/@orpham/seatcharts)
 
 Interactive seat charts — no jQuery required.
 
